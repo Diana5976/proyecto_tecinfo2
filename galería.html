@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galería de Imágenes</title>
+    <link rel="stylesheet" href="estilos_galeria.css">
+</head>
+<body>
+    <header>
+        <h1>Galería de Imágenes</h1>
+    </header>
+    <section class="galeria">
+        <div class="contenedor-imagenes">
+            <img src="imagen1.jpg" alt="Imagen 1" data-index="0">
+            <img src="imagen2.jpg" alt="Imagen 2" data-index="1">
+            <img src="imagen3.jpg" alt="Imagen 3" data-index="2">
+            <img src="imagen4.jpg" alt="Imagen 4" data-index="3">
+            <img src="imagen5.jpg" alt="Imagen 5" data-index="4">
+            <img src="imagen6.jpg" alt="Imagen 6" data-index="5">
+        </div>
+        <div id="visor-imagen" class="visor-oculto">
+            <span id="cerrar-visor">&times;</span>
+            <img id="imagen-ampliada" src="" alt="Imagen Ampliada">
+        </div>
+    </section>
+    <script src="script_galeria.js"></script>
+</body>
+</html>
