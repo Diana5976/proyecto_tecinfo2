@@ -1,0 +1,675 @@
+/* Variables de Colores */
+:root {
+    --primary-color: #FF6B6B; /* Rojo vibrante */
+    --secondary-color: #4ECDC4; /* Turquesa */
+    --accent-color: #FFE66D; /* Amarillo cálido */
+    --dark-color: #2D3A44; /* Azul oscuro casi negro */
+    --light-grey: #F5F7FA;
+    --text-color: #333;
+    --white: #FFFFFF;
+}
+
+/* Reset Básico y Fuentes */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--light-grey);
+    scroll-behavior: smooth;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Hero Section */
+.hero {
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://source.unsplash.com/random/1600x900/?food,community,helping') no-repeat center center/cover;
+    color: var(--white);
+    text-align: center;
+    padding: 100px 20px;
+    height: 60vh; /* Ajusta la altura del hero */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden; /* Para asegurar que el pseudo-elemento no se desborde */
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, rgba(255, 107, 107, 0.3) 0%, rgba(78, 205, 196, 0.3) 100%);
+    opacity: 0.6;
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    animation: fadeIn 2s ease-out;
+}
+
+.hero-content h1 {
+    font-size: 3.5em;
+    margin-bottom: 15px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.hero-content p {
+    font-size: 1.4em;
+    margin-bottom: 30px;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.4);
+}
+
+.hero-buttons .btn {
+    margin: 10px;
+    font-size: 1.1em;
+    padding: 15px 30px;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+}
+
+.hero-buttons .primary-btn {
+    background-color: var(--primary-color);
+    color: var(--white);
+    border: 2px solid var(--primary-color);
+}
+
+.hero-buttons .primary-btn:hover {
+    background-color: var(--white);
+    color: var(--primary-color);
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+}
+
+.hero-buttons .secondary-btn {
+    background-color: transparent;
+    color: var(--white);
+    border: 2px solid var(--white);
+}
+
+.hero-buttons .secondary-btn:hover {
+    background-color: var(--secondary-color);
+    border-color: var(--secondary-color);
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+}
+
+/* Navbar */
+.navbar {
+    background-color: var(--dark-color);
+    color: var(--white);
+    padding: 15px 0;
+    text-align: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.navbar .nav-item {
+    color: var(--white);
+    text-decoration: none;
+    padding: 10px 20px;
+    margin: 0 10px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border-radius: 5px;
+    display: inline-flex;
+    align-items: center;
+}
+
+.navbar .nav-item i {
+    margin-right: 8px;
+}
+
+.navbar .nav-item:hover,
+.navbar .nav-item.active {
+    background-color: var(--primary-color);
+    transform: translateY(-3px);
+}
+
+/* General Sections */
+.section {
+    padding: 60px 0;
+    margin-bottom: 40px;
+    background-color: var(--white);
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    text-align: center;
+    opacity: 0; /* Para la animación de revelado */
+    transform: translateY(20px); /* Para la animación de revelado */
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.section.reveal {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.section h2 {
+    font-size: 2.8em;
+    color: var(--primary-color);
+    margin-bottom: 25px;
+    position: relative;
+    display: inline-block;
+}
+
+.section h2::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 4px;
+    background-color: var(--secondary-color);
+    margin: 10px auto 0;
+    border-radius: 2px;
+}
+
+.section p {
+    font-size: 1.1em;
+    max-width: 800px;
+    margin: 0 auto 30px;
+    color: var(--text-color);
+}
+
+/* Features Grid (Acerca de) */
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.feature-item {
+    background-color: var(--light-grey);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+}
+
+.feature-item i {
+    font-size: 3.5em;
+    color: var(--secondary-color);
+    margin-bottom: 15px;
+}
+
+.feature-item h3 {
+    font-size: 1.5em;
+    color: var(--dark-color);
+    margin-bottom: 10px;
+}
+
+.feature-item p {
+    font-size: 1em;
+    margin: 0;
+    color: var(--text-color);
+}
+
+/* Food Donation Guide */
+.food-donation-guide {
+    background-color: var(--accent-color);
+    padding: 30px;
+    border-radius: 15px;
+    margin-top: 30px;
+    box-shadow: inset 0 0 15px rgba(0,0,0,0.1);
+}
+
+.food-donation-guide h3 {
+    color: var(--dark-color);
+    font-size: 1.8em;
+    margin-bottom: 20px;
+}
+
+.food-donation-guide ul {
+    list-style: none;
+    padding: 0;
+    text-align: left;
+    max-width: 600px;
+    margin: 0 auto 30px;
+}
+
+.food-donation-guide ul li {
+    background-color: var(--white);
+    margin-bottom: 10px;
+    padding: 15px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    font-size: 1.1em;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    transition: transform 0.2s ease;
+}
+
+.food-donation-guide ul li:hover {
+    transform: translateX(5px);
+}
+
+.food-donation-guide ul li i {
+    color: var(--primary-color);
+    margin-right: 15px;
+    font-size: 1.4em;
+}
+
+.food-btn {
+    background-color: var(--dark-color);
+    color: var(--white);
+    padding: 15px 30px;
+    border-radius: 50px;
+    font-size: 1.1em;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.food-btn:hover {
+    background-color: var(--primary-color);
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+}
+
+/* Donation Form (Apoyo Monetario) */
+.donation-form {
+    background-color: var(--light-grey);
+    padding: 40px;
+    border-radius: 15px;
+    max-width: 600px;
+    margin: 40px auto 0;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+}
+
+.form-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--dark-color);
+}
+
+.form-group input[type="number"],
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1em;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.2);
+    outline: none;
+}
+
+.donation-options {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 25px;
+    flex-wrap: wrap;
+}
+
+.donate-option-btn {
+    background-color: var(--white);
+    color: var(--dark-color);
+    border: 2px solid var(--secondary-color);
+    padding: 10px 20px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 1.1em;
+    transition: all 0.3s ease;
+}
+
+.donate-option-btn:hover,
+.donate-option-btn.selected {
+    background-color: var(--secondary-color);
+    color: var(--white);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(78, 205, 196, 0.3);
+}
+
+.submit-btn {
+    background-color: var(--primary-color);
+    color: var(--white);
+    padding: 15px 30px;
+    border-radius: 50px;
+    font-size: 1.2em;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    width: 100%;
+}
+
+.submit-btn:hover {
+    background-color: var(--dark-color);
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+}
+
+.message-box {
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 8px;
+    font-weight: 600;
+    animation: fadeIn 0.5s ease-out;
+}
+
+.message-box.success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Impact Section */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.stat-item {
+    background-color: var(--accent-color);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease;
+}
+
+.stat-item:hover {
+    transform: scale(1.03);
+}
+
+.stat-item i {
+    font-size: 3.5em;
+    color: var(--dark-color);
+    margin-bottom: 15px;
+}
+
+.stat-number {
+    font-size: 2.8em;
+    font-weight: 700;
+    color: var(--primary-color);
+    display: block;
+    margin-bottom: 10px;
+}
+
+.stat-item p {
+    font-size: 1.2em;
+    color: var(--dark-color);
+    margin: 0;
+}
+
+.impact-text {
+    margin-top: 40px;
+    font-style: italic;
+    color: var(--dark-color);
+}
+
+/* Contact Section */
+.contact-info {
+    font-size: 1.1em;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.contact-info p {
+    margin-bottom: 10px;
+    color: var(--dark-color);
+    display: inline-flex;
+    align-items: center;
+    margin-right: 20px;
+}
+
+.contact-info i {
+    color: var(--secondary-color);
+    margin-right: 10px;
+    font-size: 1.3em;
+}
+
+.contact-form {
+    background-color: var(--light-grey);
+    padding: 40px;
+    border-radius: 15px;
+    max-width: 700px;
+    margin: 40px auto 0;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    text-align: left; /* Alinea los labels y inputs a la izquierda */
+}
+
+.contact-form .submit-btn {
+    margin-top: 20px;
+}
+
+
+/* Footer */
+footer {
+    background-color: var(--dark-color);
+    color: var(--white);
+    text-align: center;
+    padding: 30px 20px;
+    margin-top: 50px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+
+footer p {
+    margin-bottom: 15px;
+    font-size: 0.9em;
+}
+
+.social-links a {
+    color: var(--white);
+    font-size: 1.8em;
+    margin: 0 10px;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.social-links a:hover {
+    color: var(--primary-color);
+    transform: scale(1.2);
+}
+
+/* Modales */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1001; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0,0,0,0.5); /* Black w/ opacity */
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.modal.show {
+    display: flex;
+    opacity: 1;
+}
+
+.modal-content {
+    background-color: var(--white);
+    margin: auto;
+    padding: 30px;
+    border-radius: 15px;
+    width: 80%;
+    max-width: 500px;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.2);
+    position: relative;
+    text-align: center;
+    animation: zoomIn 0.3s ease-out;
+}
+
+.modal-content h2 {
+    color: var(--primary-color);
+    margin-bottom: 20px;
+}
+
+.modal-content p {
+    font-size: 1.1em;
+    margin-bottom: 15px;
+}
+
+.modal-content i {
+    color: var(--secondary-color);
+    margin-right: 8px;
+}
+
+.close-button {
+    color: var(--dark-color);
+    font-size: 28px;
+    font-weight: bold;
+    position: absolute;
+    top: 15px;
+    right: 25px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: var(--primary-color);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes zoomIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .hero-content h1 {
+        font-size: 2.5em;
+    }
+
+    .hero-content p {
+        font-size: 1.2em;
+    }
+
+    .hero-buttons .btn {
+        font-size: 1em;
+        padding: 12px 25px;
+    }
+
+    .navbar .nav-item {
+        margin: 0 5px;
+        padding: 8px 15px;
+        font-size: 0.9em;
+    }
+
+    .section h2 {
+        font-size: 2em;
+    }
+
+    .features-grid, .stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-info p {
+        display: block;
+        margin-bottom: 10px;
+        margin-right: 0;
+    }
+
+    .donation-options {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-content h1 {
+        font-size: 2em;
+    }
+
+    .hero-content p {
+        font-size: 1em;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+    }
+
+    .hero-buttons .btn {
+        width: 80%;
+    }
+
+    .navbar {
+        flex-direction: column;
+    }
+
+    .navbar .nav-item {
+        display: block;
+        width: 100%;
+        margin: 5px 0;
+    }
+
+    .section {
+        padding: 40px 15px;
+    }
+
+    .food-donation-guide ul li {
+        font-size: 0.95em;
+    }
+}
