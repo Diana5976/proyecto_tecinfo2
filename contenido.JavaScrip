@@ -1,0 +1,171 @@
+document.addEventListener('DOMContentLoaded', () => {
+    // Smooth scrolling for navigation
+    document.querySelectorAll('a.nav-item').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    });
+
+    // Function to scroll to a specific section (used by hero buttons)
+    window.scrollToSection = (id) => {
+        const section = document.getElementById(id);
+        if (section) {
+            section.scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
+    };
+
+    // Reveal sections on scroll
+    const sections = document.querySelectorAll('.section');
+    const revealSection = (entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('reveal');
+                observer.unobserve(entry.target); // Stop observing once revealed
+            }
+        });
+    };
+
+    const sectionObserver = new IntersectionObserver(revealSection, {
+        root: null, // viewport
+        threshold: 0.15 // 15% of the section must be visible
+    });
+
+    sections.forEach(section => {
+        sectionObserver.observe(section);
+    });
+
+    // Navbar active state on scroll
+    const navItems = document.querySelectorAll('.navbar .nav-item');
+    window.addEventListener('scroll', () => {
+        let current = '';
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.clientHeight;
+            if (pageYOffset >= sectionTop - sectionHeight / 3) {
+                current = section.getAttribute('id');
+            }
+        });
+
+        navItems.forEach(item => {
+            item.classList.remove('active');
+            if (item.href.includes(current)) {
+                item.classList.add('active');
+            }
+        });
+    });
+
+
+    // Money Donation Form Logic
+    const moneyDonationForm = document.getElementById('moneyDonationForm');
+    const amountInput = document.getElementById('amount');
+    const thankYouMessage = document.getElementById('thankYouMessage');
+    const donateOptionBtns = document.querySelectorAll('.donate-option-btn');
+
+    donateOptionBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            // Remove 'selected' class from all buttons
+            donateOptionBtns.forEach(b => b.classList.remove('selected'));
+            // Add 'selected' class to the clicked button
+            btn.classList.add('selected');
+            // Set the amount input value
+            amountInput.value = btn.dataset.amount;
+        });
+    });
+
+    moneyDonationForm.addEventListener('submit', (e) => {
+        e.preventDefault(); // Prevent default form submission
+
+        const amount = amountInput.value;
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+
+        if (amount < 10) { // Simple validation
+            alert('Por favor, ingresa una cantidad de al menos $10.');
+            return;
+        }
+
+        // Simulate form submission
+        console.log(`Donación recibida:
+            Cantidad: $${amount}
+            Nombre: ${name || 'Anónimo'}
+            Email: ${email || 'No proporcionado'}`);
+
+        // Show thank you message
+        thankYouMessage.textContent = `¡Gracias ${name || 'anónimo'} por tu donación de $${amount}! Tu generosidad nos ayuda a alimentar a más personas.`;
+        thankYouMessage.classList.remove('hidden');
+
+        // Reset form after a short delay
+        setTimeout(() => {
+            moneyDonationForm.reset();
+            thankYouMessage.classList.add('hidden');
+            donateOptionBtns.forEach(b => b.classList.remove('selected')); // Deselect all buttons
+        }, 5000);
+    });
+
+    // Statistic Counters Animation
+    const statNumbers = document.querySelectorAll('.stat-number');
+
+    const animateCount = (entry, observer) => {
+        if (entry.isIntersecting) {
+            const target = entry.target;
+            const endValue = parseInt(target.dataset.target);
+            let startValue = 0;
+            const duration = 2000; // 2 seconds
+            const stepTime = 10; // milliseconds
+
+            const increment = endValue / (duration / stepTime);
+
+            const timer = setInterval(() => {
+                startValue += increment;
+                if (startValue >= endValue) {
+                    startValue = endValue;
+                    clearInterval(timer);
+                }
+                target.textContent = Math.floor(startValue);
+            }, stepTime);
+
+            observer.unobserve(target); // Stop observing once animated
+        }
+    };
+
+    const statObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => animateCount(entry, observer));
+    }, {
+        root: null,
+        threshold: 0.5 // Start animation when 50% of the element is visible
+    });
+
+    statNumbers.forEach(number => {
+        statObserver.observe(number);
+    });
+
+    // Modal Logic
+    window.openModal = (id) => {
+        const modal = document.getElementById(id);
+        if (modal) {
+            modal.classList.add('show');
+        }
+    };
+
+    window.closeModal = (id) => {
+        const modal = document.getElementById(id);
+        if (modal) {
+            modal.classList.remove('show');
+        }
+    };
+
+    // Close modal when clicking outside of the content
+    window.addEventListener('click', (event) => {
+        const modals = document.querySelectorAll('.modal.show');
+        modals.forEach(modal => {
+            if (event.target == modal) {
+                modal.classList.remove('show');
+            }
+        });
+    });
+});
