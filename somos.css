@@ -1,0 +1,85 @@
+/* Estilos generales */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f7fa;
+    color: #333;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Encabezado */
+header {
+    background-color: #2c3e50;
+    color: #ecf0f1;
+    padding: 40px 0;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+    margin: 0;
+    font-size: 3em;
+    letter-spacing: 2px;
+}
+
+/* Sección Quiénes Somos */
+.about-us-section {
+    background-color: #ffffff;
+    margin: 40px 0;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    text-align: center;
+}
+
+.about-us-section p {
+    font-size: 1.2em;
+    margin-bottom: 30px;
+    color: #555;
+    line-height: 1.8;
+}
+
+/* Enlace a Canva */
+.canva-link-container {
+    margin-top: 30px;
+}
+
+.canva-button {
+    display: inline-block;
+    background-color: #e74c3c; /* Color llamativo para el botón */
+    color: #ffffff;
+    padding: 15px 30px;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: bold;
+    font-size: 1.1em;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.canva-button:hover {
+    background-color: #c0392b;
+    transform: translateY(-3px);
+}
+
+/* Pie de página */
+footer {
+    background-color: #2c3e50;
+    color: #ecf0f1;
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 50px;
+    box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
+}
+
+footer p {
+    margin: 0;
+    font-size: 0.9em;
+}
